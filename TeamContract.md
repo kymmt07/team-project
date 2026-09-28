@@ -25,7 +25,7 @@ Instagram
 * What things should a teammate notify you about? (Examples: if they think they won't be able to meet a deadline, if they have to miss lecture, etc.)
 won't be able to meet a deadline/miss a tutorial or lecture/have issues working on problems/have other plans on a designate group discussion time
 * Respectful and inclusive behaviour are necessary for smooth and productive communication. What are some respectful and inclusive behaviours you expect when communicating with each other during lectures, labs, or outside of class? (Examples: Actively listening to each team members ideas, giving everyone a chance to meaningfully contribute, etc.)
-Actively listening to each team members ideas, giving everyone a chance to meaningfully contribute, working together to help if someone have problems
+Actively listening to each team members ideas, giving everyone a chance to meaningfully contribute, working together to help if someone have problem
 ---
 
 ### [Other Categories of norms and expectations go here]

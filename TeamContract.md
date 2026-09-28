@@ -38,11 +38,16 @@ This contract sets out shared expectations and commitments for how our team will
 ## Decision Making
 
 * How will decisions about your team project be made? (Examples: By majority vote, by unanimous vote, etc.)
+*
+* Through discussion -- if consensus cannot be reached, use majority vote
 
 ---
 ## Conflict resolution
 
 * How will your team resolve conflicts? (Example: by listening to each other's side of the issue and attempting to reach a compromise. By consulting a TA or instructor as a team, if a resolution has not yet been reached.)
+*
+* Discuss each other's side of the issue to reach compromise. If unable to do so, involve TAs, etc. in the discussion.
+
 
 ---
 

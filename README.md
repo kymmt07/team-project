@@ -174,6 +174,5 @@ for the rest of the game session.
 ## Notes
 
 ### Visual Project Outline
-![project outline.png](../../Desktop/project%20outline.png)
+![Project Outline Diagram](images/project_outline.png)
 
-[Any addi

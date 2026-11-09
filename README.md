@@ -104,7 +104,6 @@ Use Case 1.3
 - Success outcome: The plot is empty and the backpack has the harvested crop.
 
 ### User Story 3: Grow flower
-### for user story handling growing, raising, and processing livestock:
 
 Use Case 2.0
 - Name: Add Livestock to a Pen

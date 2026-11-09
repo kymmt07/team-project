@@ -25,13 +25,13 @@
 
 ## User Stories
 
-### As a player, I want to create and log in to my account to save my progress on the game. 
+### 1. As a player, I want to create and log in to my account to save my progress on the game. 
 
-### As a player, I want to plant, grow, and harvest plants for my farm. 
+### 2. As a player, I want to plant, grow, and harvest plants for my farm. [UPDATE: PLANT FLOWERS]
 
-### As a player, I want to grow, raise, and process livestock for my farm. 
+### 3. As a player, I want to grow, raise, and process livestock for my farm. [UPDATE: GROW FLOWERS]
 
-### As a player, I want to trade resources with NPCs. 
+### 4. As a player, I want to trade resources with NPCs. [UPDATE: HARVEST FLOWERS]
 
  
 
@@ -39,7 +39,7 @@
 
 ## Use Cases
 
-### For user story handling account and login:
+### User story 1: Login
 Use Case 1
 - Name: Log in to game
 - Primary actor: Player
@@ -57,7 +57,7 @@ Use Case 1
   - Player inputs a unique username and password and clicks signup, so the system creates an account with that information and displays the login page again.
 - Success outcome: The main page is displayed with user information.
 
-### for user story handling planting, growing, and harvesting plants:
+### User story 2: Plant flower
 Use Case 1.1
 - Name: Plant a Crop
 - Primary actor: Player
@@ -103,9 +103,9 @@ Use Case 1.3
     - 1a. The crop has not been tended, so the system tells the player it is not ready.
 - Success outcome: The plot is empty and the backpack has the harvested crop.
 
-### for user story handling growing, raising, and processing livestock:
+### User Story 3: Grow flower
 
-### for user story handling trading resources with other players:
+### User Story 4: Harvest flower
 
 
 ---
@@ -114,13 +114,13 @@ Use Case 1.3
 
 | Team Member | MVP Use Case |
 
-| Tiffany | Use Case 1 |
+| Kaho | Use Case 1 |
 
 | Bella | Use Case 2 |
 
 | Angela | Use Case 3 |
 
-| Kaho | Use Case 4 |
+| Tiffany | Use Case 4 |
 
 ---
 
@@ -135,14 +135,11 @@ Use Case 1.3
 
 ## API Usage
 
-**API Name:** weatherapi - JAVA
+**API Name:** 
 
 **Documentation:** 
 
-**How it is used in the program:** When starting a new game, the user chooses a city to place 
-the farm in. The system then calculates the chance of each weather pattern occurring in that city
-based on the actual city's historical weather, which will be used to determine the weather pattern
-for the rest of the game session. 
+**How it is used in the program:** 
 
 ---
 

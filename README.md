@@ -29,7 +29,7 @@ entertainment
 
 ### 2. As a player, I want to plant, grow, and harvest plants for my farm. [UPDATE: PLANT FLOWERS]
 
-### 3. As a player, I want to grow my flower from the small stage to the large stage.
+### 3. As a player, I want to grow my flower from the small stage to the big stage.
 
 ### 4. As a player, I want to trade resources with NPCs. [UPDATE: HARVEST FLOWERS]
 
@@ -112,11 +112,11 @@ Use Case 3
 - Main success scenario:
   1. System opens a menu for the plot with 'Grow' as the only available action.
   2. Player selects 'Grow'.
-  3. System changes the flower from the small stage to the large stage.
-  4. System displays the large flower in the same plot.
+  3. System changes the flower from the small stage to the big stage.
+  4. System displays the big flower in the same plot.
 - Extensions:
   - 2a. Player dismisses the menu. System closes the menu and returns to the farm view. The use case ends.
-- Success outcome: The flower in the selected plot is in the large stage.
+- Success outcome: The flower in the selected plot is in the big stage.
 
 ### User Story 4: Harvest flower
 

@@ -33,7 +33,9 @@ entertainment
 
 ### 4. As a player, I want to harvest my fully grown flowers so that they are counted in my Gallery.
 
- 
+### 5. As a player, I want to see a leaderboard of harvest counts and choose 
+### whether my own count is public or private,so that I can compare with others while 
+### controlling what I share.
 
 ---
 
@@ -100,12 +102,32 @@ Use Case 4
   1. Player clicks a plot with a big flower.
   2. System shows the prompt "harvest flower at plot N".
   3. Player clicks the prompt to confirm.
-  4. System sets the plot to empty and adds one to the player's plants submitted to Gallery.
-  5. System shows the updated grid and the new count.
+  4. System sets the plot to empty and adds one to the player's harvest count.
+  5. System shows the updated grid and the new harvest count.
 - Extensions:
   - None.
-- Success outcome: The plot is empty and the player's plants submitted to Gallery has increased by one.
+- Success outcome: The plot is empty and the player's harvest count has increased by one.
 
+### User Story 5: Leaderboard
+Use Case 5
+- Name: View Leaderboard
+- Primary actor: Player
+- Precondition: The player is logged in.
+- Trigger: The player clicks "Leaderboard".
+- Main success scenario:
+  1. Player clicks "Leaderboard".
+  2. System checks that the player has already chosen whether their harvest count is public or private.
+  3. If the count is public, system uploads the player's username and current harvest count, replacing any earlier entry from this player.
+  4. System gets all uploaded entries from the online leaderboard service.
+  5. System sorts the entries by harvest count from highest to lowest.
+  6. System shows the top three usernames and counts, the player's own harvest count, and whether it is currently Public or Private.
+- Extensions:
+  - 2a. The player has not chosen yet, so the system asks the player to choose Public or Private, saves the choice, and continues at step 3.
+  - 3a. The upload fails (for example, no internet), so the system tells the player and continues at step 4.
+  - 4a. The service cannot be reached, so the system tells the player and shows only the player's own count.
+  - 6a. There are fewer than three entries, so the system shows all of them.
+  - 6b. The player switches between Public and Private, so the system saves the new choice, uploads or removes the player's entry accordingly, and shows the updated leaderboard.
+- Success outcome: The player sees the current top three. The player's choice is saved, and the online leaderboard matches it.
 ---
 
 ## Minimal Viable Product (MVP)
@@ -118,7 +140,7 @@ Use Case 4
 
 | Angela | Use Case 3 |
 
-| Tiffany | Use Case 4: Harvest a Flower |
+| Tiffany | Use Case 4: Harvest a Flower, Use Case 5: View Leaderboard |
 
 ---
 
@@ -132,12 +154,26 @@ Use Case 4
   - plant(): sets status from "empty" to "small"
   - grow(): sets status from "small" to "big"
   - harvest(): sets status from "big" to "empty"
-  
-### Crop
+
+### HarvestRecord
 - Instance variables:
-  - name: String
+  - username: String
+  - harvestCount: int, starts at 0
+  - visibility: String ("unset", "public", or "private"), starts as "unset"
 - Methods:
-  - getName(): String
+  - getUsername(): String
+  - getHarvestCount(): int
+  - incrementHarvestCount(): increases the count by one
+  - getVisibility(): String
+  - setVisibility(String): sets the visibility
+
+### LeaderboardEntry
+- Instance variables:
+  - username: String
+  - harvestCount: int
+- Methods:
+  - getUsername(): String
+  - getHarvestCount(): int
 
 ### Entities
 

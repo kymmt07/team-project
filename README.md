@@ -27,7 +27,7 @@ entertainment
 
 ### 1. As a player, I want to create and log in to my account to save my progress on the game. 
 
-### 2. As a player, I want to plant, grow, and harvest plants for my farm. [UPDATE: PLANT FLOWERS]
+### 2. As a player, I want to plant flowers in my flower plots so I can make progress in the game.
 
 ### 3. As a player, I want to grow my flower from the small stage to the big stage.
 
@@ -60,21 +60,20 @@ Use Case 1
 - Success outcome: The main page is displayed with user information.
 
 ### User story 2: Plant flower
-Use Case 1.1
-- Name: Plant a Crop
+Use Case 2
+- Name: Plant a Flower
 - Primary actor: Player
-- Precondition: The player has at least one empty plot and at least one seed in the backpack.
+- Precondition: The player has at least one empty plot in the garden.
 - Trigger: The player clicks an empty plot.
 - Main success scenario:
     1. Player clicks an empty plot.
-    2. System shows the seeds in the backpack.
-    3. Player chooses a seed.
-    4. System plants the seed in the plot and removes one seed from the backpack.
-    5. System shows the plot as planted.
+    2. System shows a menu for the plot with 'Plant' as the only available action.
+    3. Player clicks the 'Plant' button
+    4. The menu disappears and the system shows the plot occupied by a small flower.
 - Extensions:
-    - 2a. The backpack has no seeds, so the system tells the player.
-    - 3a. Player cancels, so the plot stays empty.
-- Success outcome: The plot contains a growing crop, and the backpack has one fewer seed.
+    - 2a. Player cancels, so the plot stays empty.
+    - 2b. The selected plot is not empty, so the option for 'Plant' is not available (addressed in Use Case 3)
+- Success outcome: The plot contains a baby flower.
 
 
 ### User Story 3: Grow flower

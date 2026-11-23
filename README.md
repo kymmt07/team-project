@@ -182,11 +182,21 @@ Use Case 5
 
 ## API Usage
 
-**API Name:** 
+**API Name:** Firebase Realtime Database REST API
 
-**Documentation:** 
+**Documentation:** https://firebase.google.com/docs/reference/rest/database/
 
-**How it is used in the program:** 
+**How it is used in the program:** The leaderboard feature uses this API as an online scoreboard. 
+  When a player chooses to participate, the program uploads the player's username and harvest count
+  (a PUT request that replaces any earlier entry). When the player switches to view-only,
+  the program removes the player's entry (a DELETE request). 
+  To show the leaderboard, the program reads all entries (a GET request), 
+  sorts them by harvest count, and displays the top three. 
+  All requests are sent from the data access layer, 
+  so the rest of the program does not depend on this service.
+
+**Successfully called:** Yes. A test program wrote two entries, read them back, deleted one, and read again, 
+                          and all requests returned status 200.
 
 ---
 

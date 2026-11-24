@@ -34,4 +34,11 @@ public class FlowerPlot {
         }
         this.state = BIG;
     }
+
+    public void plant() {
+        if (!EMPTY.equals(state)) {
+            throw new IllegalStateException("Only an empty plot can be planted.");
+        }
+        this.state = SMALL;
+    }
 }

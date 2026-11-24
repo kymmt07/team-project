@@ -1,7 +1,11 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
+import data_access.PlotDataAccess;
+
 import entity.UserFactory;
+import entity.FlowerPlot;
+
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;
@@ -9,12 +13,19 @@ import interface_adapter.login.LoginPresenter;
 import interface_adapter.login_signup.LoginSignupViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
+import interface_adapter.grow_flower.GrowController;
+import interface_adapter.grow_flower.GrowPresenter;
+
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
+import use_case.grow_flower.GrowFlowerInputBoundary;
+import use_case.grow_flower.GrowFlowerInteractor;
+import use_case.grow_flower.GrowFlowerOutputBoundary;
+
 import view.LoggedInView;
 import view.LoginSignupView;
 import view.ViewManager;
@@ -40,6 +51,8 @@ public class AppBuilder {
     private LoginSignupViewModel loginSignupViewModel;
     private LoggedInView loggedInView;
     private LoggedInViewModel loggedInViewModel;
+
+    private final PlotDataAccess plotDataAccess = new PlotDataAccess();
 
     public AppBuilder(){
         cardPanel.setLayout(cardLayout);
@@ -78,6 +91,14 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addGrowUseCase() {
+        final GrowFlowerOutputBoundary growFlowerOutputBoundary = new GrowPresenter(loggedInViewModel);
+        final GrowFlowerInputBoundary growInteractor = new GrowFlowerInteractor(plotDataAccess, growFlowerOutputBoundary);
+        final GrowController growController = new GrowController(growInteractor);
+        loggedInView.setGrowController(growController);
+        return this;
+    }
+
     public JFrame build() {
         final JFrame application = new JFrame("Login / Sign Up");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -88,5 +109,15 @@ public class AppBuilder {
         viewManagerModel.notifyViewChanged();
 
         return application;
+    }
+
+    public AppBuilder initializePlots() {
+        for (int plotID = 1; plotID <= 9; plotID ++) {
+            final FlowerPlot plot = new FlowerPlot(plotID, FlowerPlot.EMPTY);
+
+            plotDataAccess.savePlot(plot);
+            loggedInViewModel.getState().setPlotState(plotID, plot.getState());
+        }
+        return this;
     }
 }

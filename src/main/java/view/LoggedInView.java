@@ -4,6 +4,8 @@ import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.logged_in.LoggedInViewModelListener;
 
+import interface_adapter.grow_flower.GrowController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,6 +17,8 @@ public class LoggedInView extends JPanel implements LoggedInViewModelListener {
     private final JButton[][] squares = new JButton[GRID_SIZE][GRID_SIZE];
     private final JButton galleryButton = new JButton("Gallery");
     private final JLabel numberPlants = new JLabel("Plants in Gallery: 0", SwingConstants.CENTER);
+
+    private GrowController growController;
 
     public LoggedInView(LoggedInViewModel loggedInViewModel) {
         this.loggedInViewModel = loggedInViewModel;
@@ -43,13 +47,44 @@ public class LoggedInView extends JPanel implements LoggedInViewModelListener {
         add(galleryInfo, BorderLayout.EAST);
     }
 
+    public void setGrowController(GrowController growController) {
+        this.growController = growController;
+    }
+
+    // Just for convenience and that plotID can be only int, setting the plotID from 1-9.
+    private int getPlotID(int row, int col) {
+        return row * GRID_SIZE + (col + 1);
+    }
+
     /**
      * Called when a square is clicked.
      * @param row the row of the clicked square
      * @param col the column of the clicked square
      */
     private void squareClicked(int row, int col) {
+        final int plotID = getPlotID(row, col);
+        final LoggedInState state = loggedInViewModel.getState();
+        final String plotState = state.getPlotState(plotID);
+
         // TODO: CODE PLANT ACTIONS
+
+        // Grow Actions
+        if ("SMALL".equals(plotState)) {
+            final JPopupMenu menu = new JPopupMenu();
+            final JMenuItem growItem = new JMenuItem("Grow");
+
+            growItem.addActionListener(evt -> growController.execute(plotID));
+
+            menu.add(growItem);
+
+            final JButton clickedSquare = squares[row][col];
+            final int x = (clickedSquare.getWidth() - menu.getPreferredSize().width) / 2;
+            final int y = (clickedSquare.getHeight() - menu.getPreferredSize().height) / 2;
+
+            menu.show(clickedSquare, x, y);
+        }
+
+        // TODO: CODE HARVEST ACTIONS
     }
 
     private void galleryButtonClicked(){
@@ -63,6 +98,23 @@ public class LoggedInView extends JPanel implements LoggedInViewModelListener {
         final Window window = SwingUtilities.getWindowAncestor(this);
         if (window instanceof JFrame) {
             ((JFrame) window).setTitle("Logged in as: " + state.getUsername());
+        }
+
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
+                final int plotID = getPlotID(row, col);
+                final String plotState = state.getPlotState(plotID);
+
+                // TODO: Replace text labels with flower icons for SMALL and BIG.
+                squares[row][col].setText(plotState);
+            }
+        }
+
+        if (state.getPlotError() != null) {
+            final String errorMessage = state.getPlotError();
+            state.setPlotError(null);
+
+            JOptionPane.showMessageDialog(this, errorMessage);
         }
     }
 

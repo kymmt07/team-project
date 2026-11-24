@@ -8,8 +8,10 @@ public class Main {
         final JFrame application = appBuilder
                 .addLoginSignupView()
                 .addLoggedInView()
+                .initializePlots()
                 .addSignupUseCase()
                 .addLoginUseCase()
+                .addGrowUseCase()
                 .build();
 
         SwingUtilities.invokeLater(() -> {

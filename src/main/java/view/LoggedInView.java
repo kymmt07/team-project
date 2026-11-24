@@ -5,6 +5,7 @@ import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.logged_in.LoggedInViewModelListener;
 
 import interface_adapter.grow_flower.GrowController;
+import interface_adapter.plant_flower.PlantController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,7 @@ public class LoggedInView extends JPanel implements LoggedInViewModelListener {
     private final JLabel numberPlants = new JLabel("Plants in Gallery: 0", SwingConstants.CENTER);
 
     private GrowController growController;
+    private PlantController plantController;
 
     public LoggedInView(LoggedInViewModel loggedInViewModel) {
         this.loggedInViewModel = loggedInViewModel;
@@ -51,6 +53,8 @@ public class LoggedInView extends JPanel implements LoggedInViewModelListener {
         this.growController = growController;
     }
 
+    public void setPlantController(PlantController plantController) {this.plantController = plantController;}
+
     // Just for convenience and that plotID can be only int, setting the plotID from 1-9.
     private int getPlotID(int row, int col) {
         return row * GRID_SIZE + (col + 1);
@@ -66,7 +70,20 @@ public class LoggedInView extends JPanel implements LoggedInViewModelListener {
         final LoggedInState state = loggedInViewModel.getState();
         final String plotState = state.getPlotState(plotID);
 
-        // TODO: CODE PLANT ACTIONS
+        // Plant Actions
+        if ("EMPTY".equals(plotState)) {
+            final JPopupMenu menu = new JPopupMenu();
+            final JMenuItem plantFlowerOption = new JMenuItem("click to plant 🌷");
+
+            plantFlowerOption.addActionListener(evt -> plantController.execute(plotID));
+            menu.add(plantFlowerOption);
+
+            final JButton clickedSquare = squares[row][col];
+            final int x = (clickedSquare.getWidth() - menu.getPreferredSize().width) / 2;
+            final int y = (clickedSquare.getHeight() - menu.getPreferredSize().height) / 2;
+
+            menu.show(clickedSquare, x, y);
+        }
 
         // Grow Actions
         if ("SMALL".equals(plotState)) {
